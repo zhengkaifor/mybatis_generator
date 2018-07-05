@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.newland.iot.dao.CallbackMsgMapper" >
+  <resultMap id="BaseResultMap" type="com.newland.iot.model.CallbackMsg" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="device_type" property="deviceType" jdbcType="VARCHAR" />
+    <result column="gateway_no" property="gatewayNo" jdbcType="VARCHAR" />
+    <result column="device_no" property="deviceNo" jdbcType="VARCHAR" />
+    <result column="vendor_id" property="vendorId" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="log_id" property="logId" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, device_type, gateway_no, device_no, vendor_id, update_time, log_id, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from callback_msg
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from callback_msg
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.newland.iot.model.CallbackMsg" >
+    insert into callback_msg (id, device_type, gateway_no, 
+      device_no, vendor_id, update_time, 
+      log_id, status)
+    values (#{id,jdbcType=BIGINT}, #{deviceType,jdbcType=VARCHAR}, #{gatewayNo,jdbcType=VARCHAR}, 
+      #{deviceNo,jdbcType=VARCHAR}, #{vendorId,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{logId,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.newland.iot.model.CallbackMsg" >
+    insert into callback_msg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="deviceType != null" >
+        device_type,
+      </if>
+      <if test="gatewayNo != null" >
+        gateway_no,
+      </if>
+      <if test="deviceNo != null" >
+        device_no,
+      </if>
+      <if test="vendorId != null" >
+        vendor_id,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="logId != null" >
+        log_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="deviceType != null" >
+        #{deviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="gatewayNo != null" >
+        #{gatewayNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceNo != null" >
+        #{deviceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="vendorId != null" >
+        #{vendorId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logId != null" >
+        #{logId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newland.iot.model.CallbackMsg" >
+    update callback_msg
+    <set >
+      <if test="deviceType != null" >
+        device_type = #{deviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="gatewayNo != null" >
+        gateway_no = #{gatewayNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceNo != null" >
+        device_no = #{deviceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="vendorId != null" >
+        vendor_id = #{vendorId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logId != null" >
+        log_id = #{logId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newland.iot.model.CallbackMsg" >
+    update callback_msg
+    set device_type = #{deviceType,jdbcType=VARCHAR},
+      gateway_no = #{gatewayNo,jdbcType=VARCHAR},
+      device_no = #{deviceNo,jdbcType=VARCHAR},
+      vendor_id = #{vendorId,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      log_id = #{logId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

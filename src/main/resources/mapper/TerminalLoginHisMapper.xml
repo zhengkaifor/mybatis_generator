@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.newland.iot.dao.TerminalLoginHisMapper" >
+  <resultMap id="BaseResultMap" type="com.newland.iot.model.TerminalLoginHis" >
+    <id column="seq_id" property="seqId" jdbcType="BIGINT" />
+    <result column="terminal_id" property="terminalId" jdbcType="BIGINT" />
+    <result column="device_id" property="deviceId" jdbcType="BIGINT" />
+    <result column="terminal_no" property="terminalNo" jdbcType="VARCHAR" />
+    <result column="gateway_no" property="gatewayNo" jdbcType="VARCHAR" />
+    <result column="server_ip" property="serverIp" jdbcType="VARCHAR" />
+    <result column="device_ip" property="deviceIp" jdbcType="VARCHAR" />
+    <result column="login_time" property="loginTime" jdbcType="TIMESTAMP" />
+    <result column="logout_time" property="logoutTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    seq_id, terminal_id, device_id, terminal_no, gateway_no, server_ip, device_ip, login_time, 
+    logout_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from terminal_login_his
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from terminal_login_his
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.newland.iot.model.TerminalLoginHis" >
+    insert into terminal_login_his (seq_id, terminal_id, device_id, 
+      terminal_no, gateway_no, server_ip, 
+      device_ip, login_time, logout_time
+      )
+    values (#{seqId,jdbcType=BIGINT}, #{terminalId,jdbcType=BIGINT}, #{deviceId,jdbcType=BIGINT}, 
+      #{terminalNo,jdbcType=VARCHAR}, #{gatewayNo,jdbcType=VARCHAR}, #{serverIp,jdbcType=VARCHAR}, 
+      #{deviceIp,jdbcType=VARCHAR}, #{loginTime,jdbcType=TIMESTAMP}, #{logoutTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.newland.iot.model.TerminalLoginHis" >
+    insert into terminal_login_his
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="seqId != null" >
+        seq_id,
+      </if>
+      <if test="terminalId != null" >
+        terminal_id,
+      </if>
+      <if test="deviceId != null" >
+        device_id,
+      </if>
+      <if test="terminalNo != null" >
+        terminal_no,
+      </if>
+      <if test="gatewayNo != null" >
+        gateway_no,
+      </if>
+      <if test="serverIp != null" >
+        server_ip,
+      </if>
+      <if test="deviceIp != null" >
+        device_ip,
+      </if>
+      <if test="loginTime != null" >
+        login_time,
+      </if>
+      <if test="logoutTime != null" >
+        logout_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="seqId != null" >
+        #{seqId,jdbcType=BIGINT},
+      </if>
+      <if test="terminalId != null" >
+        #{terminalId,jdbcType=BIGINT},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="terminalNo != null" >
+        #{terminalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="gatewayNo != null" >
+        #{gatewayNo,jdbcType=VARCHAR},
+      </if>
+      <if test="serverIp != null" >
+        #{serverIp,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceIp != null" >
+        #{deviceIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logoutTime != null" >
+        #{logoutTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newland.iot.model.TerminalLoginHis" >
+    update terminal_login_his
+    <set >
+      <if test="terminalId != null" >
+        terminal_id = #{terminalId,jdbcType=BIGINT},
+      </if>
+      <if test="deviceId != null" >
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="terminalNo != null" >
+        terminal_no = #{terminalNo,jdbcType=VARCHAR},
+      </if>
+      <if test="gatewayNo != null" >
+        gateway_no = #{gatewayNo,jdbcType=VARCHAR},
+      </if>
+      <if test="serverIp != null" >
+        server_ip = #{serverIp,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceIp != null" >
+        device_ip = #{deviceIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null" >
+        login_time = #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logoutTime != null" >
+        logout_time = #{logoutTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newland.iot.model.TerminalLoginHis" >
+    update terminal_login_his
+    set terminal_id = #{terminalId,jdbcType=BIGINT},
+      device_id = #{deviceId,jdbcType=BIGINT},
+      terminal_no = #{terminalNo,jdbcType=VARCHAR},
+      gateway_no = #{gatewayNo,jdbcType=VARCHAR},
+      server_ip = #{serverIp,jdbcType=VARCHAR},
+      device_ip = #{deviceIp,jdbcType=VARCHAR},
+      login_time = #{loginTime,jdbcType=TIMESTAMP},
+      logout_time = #{logoutTime,jdbcType=TIMESTAMP}
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+</mapper>

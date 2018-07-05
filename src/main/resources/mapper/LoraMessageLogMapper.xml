@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.newland.iot.dao.LoraMessageLogMapper" >
+  <resultMap id="BaseResultMap" type="com.newland.iot.model.LoraMessageLog" >
+    <id column="seq_id" property="seqId" jdbcType="BIGINT" />
+    <result column="application_id" property="applicationId" jdbcType="INTEGER" />
+    <result column="application_name" property="applicationName" jdbcType="VARCHAR" />
+    <result column="node_name" property="nodeName" jdbcType="VARCHAR" />
+    <result column="dev_eui" property="devEui" jdbcType="VARCHAR" />
+    <result column="mac" property="mac" jdbcType="VARCHAR" />
+    <result column="upload_time" property="uploadTime" jdbcType="VARCHAR" />
+    <result column="rssi" property="rssi" jdbcType="VARCHAR" />
+    <result column="fcnt" property="fcnt" jdbcType="INTEGER" />
+    <result column="fPort" property="fport" jdbcType="INTEGER" />
+    <result column="data" property="data" jdbcType="VARCHAR" />
+    <result column="recieve_time" property="recieveTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    seq_id, application_id, application_name, node_name, dev_eui, mac, upload_time, rssi, 
+    fcnt, fPort, data, recieve_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from lora_message_log
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from lora_message_log
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.newland.iot.model.LoraMessageLog" >
+    insert into lora_message_log (seq_id, application_id, application_name, 
+      node_name, dev_eui, mac, 
+      upload_time, rssi, fcnt, 
+      fPort, data, recieve_time
+      )
+    values (#{seqId,jdbcType=BIGINT}, #{applicationId,jdbcType=INTEGER}, #{applicationName,jdbcType=VARCHAR}, 
+      #{nodeName,jdbcType=VARCHAR}, #{devEui,jdbcType=VARCHAR}, #{mac,jdbcType=VARCHAR}, 
+      #{uploadTime,jdbcType=VARCHAR}, #{rssi,jdbcType=VARCHAR}, #{fcnt,jdbcType=INTEGER}, 
+      #{fport,jdbcType=INTEGER}, #{data,jdbcType=VARCHAR}, #{recieveTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.newland.iot.model.LoraMessageLog" >
+    insert into lora_message_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="seqId != null" >
+        seq_id,
+      </if>
+      <if test="applicationId != null" >
+        application_id,
+      </if>
+      <if test="applicationName != null" >
+        application_name,
+      </if>
+      <if test="nodeName != null" >
+        node_name,
+      </if>
+      <if test="devEui != null" >
+        dev_eui,
+      </if>
+      <if test="mac != null" >
+        mac,
+      </if>
+      <if test="uploadTime != null" >
+        upload_time,
+      </if>
+      <if test="rssi != null" >
+        rssi,
+      </if>
+      <if test="fcnt != null" >
+        fcnt,
+      </if>
+      <if test="fport != null" >
+        fPort,
+      </if>
+      <if test="data != null" >
+        data,
+      </if>
+      <if test="recieveTime != null" >
+        recieve_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="seqId != null" >
+        #{seqId,jdbcType=BIGINT},
+      </if>
+      <if test="applicationId != null" >
+        #{applicationId,jdbcType=INTEGER},
+      </if>
+      <if test="applicationName != null" >
+        #{applicationName,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeName != null" >
+        #{nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="devEui != null" >
+        #{devEui,jdbcType=VARCHAR},
+      </if>
+      <if test="mac != null" >
+        #{mac,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null" >
+        #{uploadTime,jdbcType=VARCHAR},
+      </if>
+      <if test="rssi != null" >
+        #{rssi,jdbcType=VARCHAR},
+      </if>
+      <if test="fcnt != null" >
+        #{fcnt,jdbcType=INTEGER},
+      </if>
+      <if test="fport != null" >
+        #{fport,jdbcType=INTEGER},
+      </if>
+      <if test="data != null" >
+        #{data,jdbcType=VARCHAR},
+      </if>
+      <if test="recieveTime != null" >
+        #{recieveTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newland.iot.model.LoraMessageLog" >
+    update lora_message_log
+    <set >
+      <if test="applicationId != null" >
+        application_id = #{applicationId,jdbcType=INTEGER},
+      </if>
+      <if test="applicationName != null" >
+        application_name = #{applicationName,jdbcType=VARCHAR},
+      </if>
+      <if test="nodeName != null" >
+        node_name = #{nodeName,jdbcType=VARCHAR},
+      </if>
+      <if test="devEui != null" >
+        dev_eui = #{devEui,jdbcType=VARCHAR},
+      </if>
+      <if test="mac != null" >
+        mac = #{mac,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null" >
+        upload_time = #{uploadTime,jdbcType=VARCHAR},
+      </if>
+      <if test="rssi != null" >
+        rssi = #{rssi,jdbcType=VARCHAR},
+      </if>
+      <if test="fcnt != null" >
+        fcnt = #{fcnt,jdbcType=INTEGER},
+      </if>
+      <if test="fport != null" >
+        fPort = #{fport,jdbcType=INTEGER},
+      </if>
+      <if test="data != null" >
+        data = #{data,jdbcType=VARCHAR},
+      </if>
+      <if test="recieveTime != null" >
+        recieve_time = #{recieveTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newland.iot.model.LoraMessageLog" >
+    update lora_message_log
+    set application_id = #{applicationId,jdbcType=INTEGER},
+      application_name = #{applicationName,jdbcType=VARCHAR},
+      node_name = #{nodeName,jdbcType=VARCHAR},
+      dev_eui = #{devEui,jdbcType=VARCHAR},
+      mac = #{mac,jdbcType=VARCHAR},
+      upload_time = #{uploadTime,jdbcType=VARCHAR},
+      rssi = #{rssi,jdbcType=VARCHAR},
+      fcnt = #{fcnt,jdbcType=INTEGER},
+      fPort = #{fport,jdbcType=INTEGER},
+      data = #{data,jdbcType=VARCHAR},
+      recieve_time = #{recieveTime,jdbcType=TIMESTAMP}
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+</mapper>

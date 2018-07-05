@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.newland.iot.dao.DataSyncServerLogMapper" >
+  <resultMap id="BaseResultMap" type="com.newland.iot.model.DataSyncServerLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="send_result" property="sendResult" jdbcType="VARCHAR" />
+    <result column="sync_time" property="syncTime" jdbcType="TIMESTAMP" />
+    <result column="error_code" property="errorCode" jdbcType="DECIMAL" />
+    <result column="error_msg" property="errorMsg" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.newland.iot.model.DataSyncServerLog" extends="BaseResultMap" >
+    <result column="req_message" property="reqMessage" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, send_result, sync_time, error_code, error_msg
+  </sql>
+  <sql id="Blob_Column_List" >
+    req_message
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from data_sync_server_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from data_sync_server_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.newland.iot.model.DataSyncServerLog" >
+    insert into data_sync_server_log (id, send_result, sync_time, 
+      error_code, error_msg, req_message
+      )
+    values (#{id,jdbcType=BIGINT}, #{sendResult,jdbcType=VARCHAR}, #{syncTime,jdbcType=TIMESTAMP}, 
+      #{errorCode,jdbcType=DECIMAL}, #{errorMsg,jdbcType=VARCHAR}, #{reqMessage,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.newland.iot.model.DataSyncServerLog" >
+    insert into data_sync_server_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sendResult != null" >
+        send_result,
+      </if>
+      <if test="syncTime != null" >
+        sync_time,
+      </if>
+      <if test="errorCode != null" >
+        error_code,
+      </if>
+      <if test="errorMsg != null" >
+        error_msg,
+      </if>
+      <if test="reqMessage != null" >
+        req_message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sendResult != null" >
+        #{sendResult,jdbcType=VARCHAR},
+      </if>
+      <if test="syncTime != null" >
+        #{syncTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errorCode != null" >
+        #{errorCode,jdbcType=DECIMAL},
+      </if>
+      <if test="errorMsg != null" >
+        #{errorMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="reqMessage != null" >
+        #{reqMessage,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newland.iot.model.DataSyncServerLog" >
+    update data_sync_server_log
+    <set >
+      <if test="sendResult != null" >
+        send_result = #{sendResult,jdbcType=VARCHAR},
+      </if>
+      <if test="syncTime != null" >
+        sync_time = #{syncTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errorCode != null" >
+        error_code = #{errorCode,jdbcType=DECIMAL},
+      </if>
+      <if test="errorMsg != null" >
+        error_msg = #{errorMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="reqMessage != null" >
+        req_message = #{reqMessage,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.newland.iot.model.DataSyncServerLog" >
+    update data_sync_server_log
+    set send_result = #{sendResult,jdbcType=VARCHAR},
+      sync_time = #{syncTime,jdbcType=TIMESTAMP},
+      error_code = #{errorCode,jdbcType=DECIMAL},
+      error_msg = #{errorMsg,jdbcType=VARCHAR},
+      req_message = #{reqMessage,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newland.iot.model.DataSyncServerLog" >
+    update data_sync_server_log
+    set send_result = #{sendResult,jdbcType=VARCHAR},
+      sync_time = #{syncTime,jdbcType=TIMESTAMP},
+      error_code = #{errorCode,jdbcType=DECIMAL},
+      error_msg = #{errorMsg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

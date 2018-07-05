@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.newland.iot.dao.TerminalSensorCfgMapper" >
+  <resultMap id="BaseResultMap" type="com.newland.iot.model.TerminalSensorCfg" >
+    <id column="sensor_id" property="sensorId" jdbcType="BIGINT" />
+    <result column="device_id" property="deviceId" jdbcType="BIGINT" />
+    <result column="terminal_id" property="terminalId" jdbcType="BIGINT" />
+    <result column="sensor_name" property="sensorName" jdbcType="VARCHAR" />
+    <result column="sensor_type" property="sensorType" jdbcType="INTEGER" />
+    <result column="sensor_no" property="sensorNo" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sensor_id, device_id, terminal_id, sensor_name, sensor_type, sensor_no, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from terminal_sensor_cfg
+    where sensor_id = #{sensorId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from terminal_sensor_cfg
+    where sensor_id = #{sensorId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.newland.iot.model.TerminalSensorCfg" >
+    insert into terminal_sensor_cfg (sensor_id, device_id, terminal_id, 
+      sensor_name, sensor_type, sensor_no, 
+      status)
+    values (#{sensorId,jdbcType=BIGINT}, #{deviceId,jdbcType=BIGINT}, #{terminalId,jdbcType=BIGINT}, 
+      #{sensorName,jdbcType=VARCHAR}, #{sensorType,jdbcType=INTEGER}, #{sensorNo,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.newland.iot.model.TerminalSensorCfg" >
+    insert into terminal_sensor_cfg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sensorId != null" >
+        sensor_id,
+      </if>
+      <if test="deviceId != null" >
+        device_id,
+      </if>
+      <if test="terminalId != null" >
+        terminal_id,
+      </if>
+      <if test="sensorName != null" >
+        sensor_name,
+      </if>
+      <if test="sensorType != null" >
+        sensor_type,
+      </if>
+      <if test="sensorNo != null" >
+        sensor_no,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sensorId != null" >
+        #{sensorId,jdbcType=BIGINT},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="terminalId != null" >
+        #{terminalId,jdbcType=BIGINT},
+      </if>
+      <if test="sensorName != null" >
+        #{sensorName,jdbcType=VARCHAR},
+      </if>
+      <if test="sensorType != null" >
+        #{sensorType,jdbcType=INTEGER},
+      </if>
+      <if test="sensorNo != null" >
+        #{sensorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newland.iot.model.TerminalSensorCfg" >
+    update terminal_sensor_cfg
+    <set >
+      <if test="deviceId != null" >
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="terminalId != null" >
+        terminal_id = #{terminalId,jdbcType=BIGINT},
+      </if>
+      <if test="sensorName != null" >
+        sensor_name = #{sensorName,jdbcType=VARCHAR},
+      </if>
+      <if test="sensorType != null" >
+        sensor_type = #{sensorType,jdbcType=INTEGER},
+      </if>
+      <if test="sensorNo != null" >
+        sensor_no = #{sensorNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where sensor_id = #{sensorId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newland.iot.model.TerminalSensorCfg" >
+    update terminal_sensor_cfg
+    set device_id = #{deviceId,jdbcType=BIGINT},
+      terminal_id = #{terminalId,jdbcType=BIGINT},
+      sensor_name = #{sensorName,jdbcType=VARCHAR},
+      sensor_type = #{sensorType,jdbcType=INTEGER},
+      sensor_no = #{sensorNo,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT}
+    where sensor_id = #{sensorId,jdbcType=BIGINT}
+  </update>
+</mapper>
